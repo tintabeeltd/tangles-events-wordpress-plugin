@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "tangles-events-block/tangles-events",
+	"version": "0.1.0",
+	"title": "Tangles Events",
+	"category": "text",
+	"icon": "flag",
+	"description": "The Tangles Events plugin fetches public event information from a Tangle Events community and renders as a calendar widget",
+	"attributes": {
+		"public_key": {
+			"type": "string"
+		},
+        "title": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        }
+	},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "tangles-events",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}
