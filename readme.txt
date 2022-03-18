@@ -23,14 +23,14 @@ paginated calendar view eithe rusing a Wordpress widget or a Gutenberg block.
 1. From your Tangles Events community page, select which live and upcoming events to include in the directory:
 2. Navigate to the events that you wish to include and select 'Directory entries' and add a new entry for the Community directory listing that you just created.
 
+== Source code ==
 
-== Screenshots ==
+1. Source code for the plugin can be found at https://github.com/tintabeeltd/tangles-events-wordpress-plugin
+1. To build the plugin, install the wordpress script tools using npm and use these to build the plugin zip file
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+npm install @wordpress/scripts
+npm run build
+npm run plugin-zip
 
 == Changelog ==
 

@@ -15,6 +15,6 @@
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^22.1.0"
+		"@wordpress/scripts": "^22.2.1"
 	}
 }
