@@ -15,6 +15,7 @@ paginated calendar view eithe rusing a Wordpress widget or a Gutenberg block.
 
 == Installation ==
 
+1. More detailed steps are also avaialble at https://www.tanglesevents.com/help/wordpress/
 1. Upload the plugin files to the `/wp-content/plugins/tangles-events` directory, or install the plugin through the WordPress plugins screen directly.
 1. Activate the plugin through the 'Plugins' screen in WordPress
 1. Login on to your Tangles Events community or register at https://www.tanglesevents.com/ and create a new community
