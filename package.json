@@ -1,6 +1,6 @@
 {
 	"name": "tangles-events",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "The Tangles Events plugin fetches public event infomration from a Tangle Events community and renders as a calendar widget",
 	"author": "Tintabee Ltd",
 	"license": "GPL-3.0-or-later",
@@ -15,6 +15,6 @@
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^22.2.1"
+		"@wordpress/scripts": "^22.1.0"
 	}
 }
