@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Tangles Events
  * Description:       The Tangles Events plugin fetches public event information from a Tangle Events community and renders as a calendar widget
- * Version:           0.1.1
+ * Version:           0.1.2
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Author:            Tintabee Ltd
@@ -58,23 +58,9 @@ class tangles_events_widget extends WP_Widget {
         if (isset($instance[ 'title' ])) {
             $title = apply_filters( 'widget_title', $instance['title'] );
         }
-        if (isset($instance[ 'public_key' ])) {
-            $public_key = $instance[ 'public_key' ];
-        }
-        else {
-            $public_key = __( '', 'tangles_events_widget_domain' );
-        }
-        if (isset($instance['status'])) {
-            $compact = $instance['compact'] ? 'true' : 'false';
-        } else {
-            $compact = false;
-        }
-        if (isset($instance['status'])) {
-            $status = $instance['status'];
-        }
-        else {
-            $status = '';
-        }
+        $public_key = isset($instance['public_key']) ? $instance['public_key'] : '';
+        $compact = isset($instance['compact']) ? ($instance['compact'] ? 'true' : 'false') : false;
+        $status = isset($instance['status']) ? $instance['status'] : '';
         ?>
         <p>
         <label for="<?php echo $this->get_field_id( 'public_key' ); ?>"><?php _e('Key:'); ?></label> 
@@ -84,7 +70,7 @@ class tangles_events_widget extends WP_Widget {
         <input class="checkbox" type="checkbox" <?php checked($compact, 'on' ); ?> id="<?php echo $this->get_field_id('compact'); ?>" name="<?php echo $this->get_field_name('compact'); ?>" /> 
         <label for="<?php echo $this->get_field_id('compact'); ?>">Compact view</label>
     	</p>
-        <p><small class="tanglesevents_status"><?php echo esc_attr( $status); ?></small></p>
+        <p><small class="tanglesevents_status"><?php echo esc_attr($status); ?></small></p>
         <?php 
     }
      
@@ -98,16 +84,16 @@ class tangles_events_widget extends WP_Widget {
             $community_name = '';
         }
         $instance = array();
-        $instance['title'] = !empty($community_name) ? strip_tags($community_name) : '';
-        $instance['public_key'] = !empty( $new_instance['public_key']) ? strip_tags($new_instance['public_key']) : '';
+        $instance['title'] = !empty($community_name) ? sanitize_text_field($community_name) : '';
+        $instance['public_key'] = !empty( $new_instance['public_key']) ? sanitize_text_field($new_instance['public_key']) : '';
         $instance['compact'] = $new_instance['compact'];
-        $instance['status'] = !empty($status) ? $status : '';
+        $instance['status'] = !empty($status) ? sanitize_text_field($status) : '';
         return $instance;
     }
 } 
 
 function tanglesevents_fetch_community_name($public_key) {
-    $url = "http://api.tanglesevents.com/api/directory/entry/" . $public_key . "/?site=" . urlencode(get_site_url());
+    $url = "http://api.tanglesevents.com/api/directory/entry/" . esc_attr($public_key) . "/?site=" . urlencode(get_site_url());
     $options = array();
     $headers = array();
     $response = Requests::get($url, $headers, $options);
@@ -115,13 +101,13 @@ function tanglesevents_fetch_community_name($public_key) {
         $json = json_decode($response->body);
         return $json->name;
     }
-    return "";
+    return '';
 }
 
 function tanglesevents_fetch_community_events($public_key) {
     $current_page = get_query_var( 'paged' ) ? (int) get_query_var( 'paged' ) : 1;
-    $community_url = "http://api.tanglesevents.com/api/directory/entry/" . $public_key . "/";
-    $url = $community_url . "events/?page=" . $current_page;
+    $community_url = "http://api.tanglesevents.com/api/directory/entry/" . esc_attr($public_key) . "/";
+    $url = $community_url . "events/?page=" . esc_attr($current_page);
     $options = array();
     $headers = array();
     $response = Requests::get($url, $headers, $options);
@@ -146,9 +132,9 @@ function tanglesevents_public_key_is_valid($attributes) {
     return true;
 }
 
-// Register the block
+// Register the block backend
 function tanglesevents_render_callback( $block_attributes, $content ) {
-    wp_enqueue_style( 'tangles_events_widget_style', plugins_url( 'public/css/tangles_events_widget.css' , __FILE__ ) );
+    wp_enqueue_style( 'tangles_events_widget_style', plugins_url( 'public/css/tangles_events_widget.css' , __FILE__ ));
     if (tanglesevents_public_key_is_valid($block_attributes)) {
         $public_key = $block_attributes[ 'public_key' ];
         $events = tanglesevents_fetch_community_events($public_key);
@@ -161,6 +147,7 @@ function tanglesevents_render_callback( $block_attributes, $content ) {
     return $output;
 }
 
+// Register the block
 function tanglesevents_block_init() {
     register_block_type( __DIR__ . '/build', array(
         'render_callback' => 'tanglesevents_render_callback',

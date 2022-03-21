@@ -1,9 +1,9 @@
 === Tangles Events ===
 Contributors:   tangles_events
 Tags:           events, calendar, event
-Donate link:    https://www.tanglesevents.com/donate/
+Donate link:    https://www.tanglesevents.com/contribute/
 Tested up to:   5.9
-Stable tag:     0.1.1
+Stable tag:     0.1.2
 License:        GPL-3.0-or-later
 License URI:    https://www.gnu.org/licenses/gpl-3.0.html
 

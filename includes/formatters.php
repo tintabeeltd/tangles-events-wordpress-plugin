@@ -1,23 +1,22 @@
 <?php
-include_once( plugin_dir_path( __FILE__ ) . 'third-party/parsedown/Parsedown.php');
+if (!class_exists(Parsedown::class)) {
+    include_once( plugin_dir_path( __FILE__ ) . 'third-party/parsedown/Parsedown.php');
+}
 	
-	function tangles_events_extract_day($date) {
-	    $date_time = new DateTime(esc_attr($date));
+    function tangles_events_extract_day($date_time) {
 	    return $date_time->format("D");
 	}
 	
-	function tangles_events_extract_date($date) {
-	    $date_time = new DateTime(esc_attr($date));
+	function tangles_events_extract_date($date_time) {
 	    return $date_time->format("d");
 	}
 	
-	function tangles_events_extract_short_month($date) {
-	    $date_time = new DateTime(esc_attr($date));
+	function tangles_events_extract_short_month($date_time) {
 	    return strtoupper($date_time->format("M"));
 	}
 	
-	function tangles_events_extract_month_year($date) {
-	    $date_time = new DateTime(esc_attr($date));
+	function tangles_events_extract_month_year($timestamp) {
+	    $date_time = new DateTime($timestamp);
 	    return $date_time->format("F Y");
 	}
 	
@@ -26,19 +25,18 @@ include_once( plugin_dir_path( __FILE__ ) . 'third-party/parsedown/Parsedown.php
 	    if (strlen($clean) > 0) {
 	        return strtoupper($clean[0]);
 	    }
-	    return "";
+	    return '';
 	}
-	
-	function tangles_events_start_date_summary($date) {
-	    return tangles_events_date_summary(esc_attr($date), 'start');
+
+	function tangles_events_start_date_summary($date_time) {
+	    return tangles_events_date_summary($date_time, 'start');
 	}
-	
-	function tangles_events_end_date_summary($date) {
-	    return tangles_events_date_summary(esc_attr($date), 'end');
+
+	function tangles_events_end_date_summary($date_time) {
+	    return tangles_events_date_summary($date_time, 'end');
 	}
-	
-	function tangles_events_date_summary($date, $modfifier) {
-	    $date_time = new DateTime($date);
+
+	function tangles_events_date_summary($date_time, $modfifier) {
 	    $time = $date_time->format("H:i");
 	    $now = new DateTime();
 	    $today = strtotime('today', $now->getTimestamp());
