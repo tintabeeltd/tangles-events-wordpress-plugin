@@ -3,7 +3,7 @@ Contributors:   tangles_events
 Tags:           events, calendar, event
 Donate link:    https://www.tanglesevents.com/contribute/
 Tested up to:   5.9
-Stable tag:     0.1.2
+Stable tag:     0.1.3
 License:        GPL-3.0-or-later
 License URI:    https://www.gnu.org/licenses/gpl-3.0.html
 

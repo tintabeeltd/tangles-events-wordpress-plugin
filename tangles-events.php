@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Tangles Events
  * Description:       The Tangles Events plugin fetches public event information from a Tangle Events community and renders as a calendar widget
- * Version:           0.1.2
+ * Version:           0.1.3
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Author:            Tintabee Ltd
@@ -47,32 +47,26 @@ class tangles_events_widget extends WP_Widget {
         }
     }
     
-    private function render_event($event) {
-        ?>
-        <?php include( plugin_dir_path( __FILE__ ) . 'includes/event_row.php'); ?>
-        <?php
-    }
-    
-    
     public function form( $instance ) {
         if (isset($instance[ 'title' ])) {
             $title = apply_filters( 'widget_title', $instance['title'] );
         }
         $public_key = isset($instance['public_key']) ? $instance['public_key'] : '';
-        $compact = isset($instance['compact']) ? ($instance['compact'] ? 'true' : 'false') : false;
+        $compact = isset($instance['compact']) ? $instance['compact'] : 'on';
         $status = isset($instance['status']) ? $instance['status'] : '';
         ?>
         <p>
-        <label for="<?php echo $this->get_field_id( 'public_key' ); ?>"><?php _e('Key:'); ?></label> 
-        <input class="widefat" id="<?php echo $this->get_field_id( 'public_key' ); ?>" name="<?php echo $this->get_field_name('public_key'); ?>" type="text" value="<?php echo esc_attr($public_key); ?>" />
+        <label for="<?php echo esc_attr($this->get_field_id( 'public_key' )); ?>"><?php esc_html_e( 'Key:', 'tangles_events_widget_domain' ); ?></label> 
+        <input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'public_key' )); ?>" name="<?php echo esc_attr($this->get_field_name('public_key')); ?>" type="text" value="<?php echo esc_attr($public_key); ?>" />
         </p>
     	<p>
-        <input class="checkbox" type="checkbox" <?php checked($compact, 'on' ); ?> id="<?php echo $this->get_field_id('compact'); ?>" name="<?php echo $this->get_field_name('compact'); ?>" /> 
-        <label for="<?php echo $this->get_field_id('compact'); ?>">Compact view</label>
+        <input class="checkbox" type="checkbox" <?php esc_attr(checked($compact, 'on' )); ?> id="<?php echo esc_attr($this->get_field_id('compact')); ?>" name="<?php echo esc_attr($this->get_field_name('compact')); ?>" /> 
+        <label for="<?php echo esc_attr($this->get_field_id('compact')); ?>"><?php esc_html_e( 'Compact view', 'tangles_events_widget_domain' ); ?></label>
     	</p>
-        <p><small class="tanglesevents_status"><?php echo esc_attr($status); ?></small></p>
+        <p><small class="tanglesevents_status"><?php esc_html_e($status); ?></small></p>
         <?php 
     }
+    
      
     public function update( $new_instance, $old_instance ) {
         $public_key = strip_tags($new_instance['public_key']);
@@ -85,8 +79,8 @@ class tangles_events_widget extends WP_Widget {
         }
         $instance = array();
         $instance['title'] = !empty($community_name) ? sanitize_text_field($community_name) : '';
-        $instance['public_key'] = !empty( $new_instance['public_key']) ? sanitize_text_field($new_instance['public_key']) : '';
-        $instance['compact'] = $new_instance['compact'];
+        $instance['public_key'] = sanitize_text_field($public_key);
+        $instance['compact'] = sanitize_text_field($new_instance['compact']);
         $instance['status'] = !empty($status) ? sanitize_text_field($status) : '';
         return $instance;
     }

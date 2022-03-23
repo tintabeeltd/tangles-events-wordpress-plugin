@@ -25,7 +25,7 @@ if (!class_exists(Parsedown::class)) {
 	    if (strlen($clean) > 0) {
 	        return strtoupper($clean[0]);
 	    }
-	    return '';
+	    return '?';
 	}
 
 	function tangles_events_start_date_summary($date_time) {
@@ -83,7 +83,6 @@ if (!class_exists(Parsedown::class)) {
 	
 	function tangles_events_markdown($content) {
 	    $parsedown = new Parsedown();
-	    return force_balance_tags(wp_trim_words($parsedown->text(esc_attr($content))));
 	    return force_balance_tags(html_entity_decode(wp_trim_words(htmlentities(wpautop($parsedown->text(esc_attr($content)))))));
 	}
 ?>
