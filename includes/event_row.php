@@ -5,7 +5,7 @@
 		<?php if (!empty($event->logo_url)) {?>
 			<button type="button" class="btn-logo-sm" style="background-image:url('<?php echo esc_url($event->logo_url) ?>')"></button>
 		<?php } else {?>
-			<button type="button" class="btn-logo-sm"><?php esc_html_el(tangles_events_get_ident($event->name)) ?></button>
+			<button type="button" class="btn-logo-sm"><?php esc_html_e(tangles_events_get_ident($event->name)) ?></button>
 		<?php }?>
 	</div>
 	<div class="event_row_body">
