@@ -1,7 +1,7 @@
 {
 	"name": "tangles-events",
-	"version": "0.1.3",
-	"description": "The Tangles Events plugin fetches public event infomration from a Tangle Events community and renders as a calendar widget",
+	"version": "0.1.4",
+	"description": "The Tangles Events plugin fetches public event infomration from a Tangle Events community and renders as a calendar widget or block",
 	"author": "Tintabee Ltd",
 	"license": "GPL-3.0-or-later",
 	"main": "build/index.js",
