@@ -5,7 +5,7 @@ Donate link:       https://www.tanglesevents.com/contribute/
 Tested up to:      5.9
 Requires at least: 5.8
 Requires PHP:      7.0
-Stable tag:        0.1.4
+Stable tag:        1.0.0
 License:           GPL-3.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-3.0.html
 
