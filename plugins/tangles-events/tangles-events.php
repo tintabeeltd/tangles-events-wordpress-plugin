@@ -3,7 +3,7 @@
  * Plugin Name:       Tangles Events
  * Description:       The Tangles Events plugin fetches public event information from a Tangle Events community and renders as a calendar widget
  * Version:           1.0.0
- * Tested up to:      5.9
+ * Tested up to:      6.1
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Author:            Tintabee Ltd

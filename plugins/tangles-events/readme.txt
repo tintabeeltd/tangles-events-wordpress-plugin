@@ -2,14 +2,14 @@
 Contributors:      tintabeeltd
 Tags:              events, calendar, event
 Donate link:       https://www.tanglesevents.com/contribute/
-Tested up to:      5.9
+Tested up to:      6.1
 Requires at least: 5.8
 Requires PHP:      7.0
 Stable tag:        1.0.0
 License:           GPL-3.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-3.0.html
 
-The Tangles Events plugin fetches public event information from an exsiting Tangle Events community (www.tanglesevents.com) and renders them as a calendar widget or block directly in your WordPress site.
+The Tangles Events plugin fetches public event information from an existing Tangle Events community (www.tanglesevents.com) and renders them as a calendar widget or block directly in your WordPress site.
 
 == Description ==
 The plugin connects to your existing Tangles Events community (https://www.tanglesevents.com/) to retrieve current and upcoming events and displays them in a simple paginated calendar view as a WordPress widget or a WordPress Gutenberg block. You control which events are included in the calendar from within your Tangles Events account.
@@ -50,5 +50,8 @@ You can disconnect the link between your Tangle Events community and your WordPr
 `npm run plugin-zip`
 
 == Changelog ==
+= 0.1.5 =
+* Release for WordPress 6.1
+
 = 0.1.4 =
 * WordPress.org plugin directory release
